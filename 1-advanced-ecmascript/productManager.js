@@ -1,10 +1,10 @@
-class productManager {
+class ProductManager {
     constructor() {
         this.products = []
         this.id = 1
     }
 
-    addProduct(title, description, price, thumbnail, stock, code) {
+    addProduct(title, description, price, thumbnail, code, stock) {
 
         const codeExists = this.products.find(product => product.code === code)
         if(codeExists){
@@ -21,11 +21,12 @@ class productManager {
         const product = {
             title, description, price, thumbnail, code, stock, id: this.id
         }
-            this.products.push(product)
-            this.id++
+        this.id++    
+        this.products.push(product)
+            
     }
 
-    getProduct = () => {
+    getProducts = () => {
         console.table(this.products)
         return this.products
     }
@@ -40,19 +41,31 @@ class productManager {
         return findProduct
     }
 }
+
+
 //Crea una instancia.
-const manageProducts = new productManager();
-//Crea objeto válidos.
-manageProducts.addProduct("Producto numero uno", "Un zapato", 300, "zapato.png", "ABC1", 10);
-manageProducts.addProduct("Producto numero dos", "Una pc", 5000, "pc.png", "ABC2", 50);
-manageProducts.addProduct("Producto numero tres", "Una camiseta", 20, "camiseta.png", "ABC3", 600);
-manageProducts.addProduct("Producto numero tres", "Una camiseta", 20, "camiseta.png", "ABC3", 600);
-//Retorna el array.
-printproducts = manageProducts.getProduct()
+const manageProducts = new ProductManager();
+
+// Llama “getProducts” y retorna una array vacío
+let returnProducts = manageProducts.getProducts()
+console.log(returnProducts)
+
+// Crea el objeto con un ID automáticamente sin repetirse.
+manageProducts.addProduct("producto prueba”", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25);
+
+// Llama “getProducts” y retorna el objeto.
+returnProducts = manageProducts.getProducts()
+console.log(returnProducts)
+ 
+// Crea el objeto nuevamente, pero advierte un error dado que se encuentra repetido.
+manageProducts.addProduct("producto prueba”", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25);
+
 //Retorna el objeto con el ID correcto.
-findProduct = manageProducts.getProductById(3)
+findProduct = manageProducts.getProductById(1)
+console.log(findProduct)
+
+//Muestra error debido a que no existe el producto con ese ID.
+findProduct = manageProducts.getProductById(2)
 console.log(findProduct)
 
 
-//const product1 = manageProducts.getProductById(2);
-//console.log(product1);
