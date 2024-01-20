@@ -1,0 +1,95 @@
+{
+    "products": [
+      {
+        "title": "Producto 1",
+        "description": "Este es el producto 1",
+        "price": 100,
+        "thumbnail": "Sin imagen",
+        "code": "abc123",
+        "stock": 20,
+        "id": 1
+      },
+      {
+        "title": "Producto 2",
+        "description": "Este es el producto 2",
+        "price": 150,
+        "thumbnail": "Sin imagen",
+        "code": "def456",
+        "stock": 15,
+        "id": 2
+      },
+      {
+        "title": "Producto 3",
+        "description": "Este es el producto 3",
+        "price": 120,
+        "thumbnail": "Sin imagen",
+        "code": "ghi789",
+        "stock": 30,
+        "id": 3
+      },
+      {
+        "title": "Producto 4",
+        "description": "Este es el producto 4",
+        "price": 180,
+        "thumbnail": "Sin imagen",
+        "code": "jkl012",
+        "stock": 10,
+        "id": 4
+      },
+      {
+        "title": "Producto 5",
+        "description": "Este es el producto 5",
+        "price": 90,
+        "thumbnail": "Sin imagen",
+        "code": "mno345",
+        "stock": 25,
+        "id": 5
+      },
+      {
+        "title": "Producto 6",
+        "description": "Este es el producto 6",
+        "price": 200,
+        "thumbnail": "Sin imagen",
+        "code": "pqr678",
+        "stock": 18,
+        "id": 6
+      },
+      {
+        "title": "Producto 7",
+        "description": "Este es el producto 7",
+        "price": 130,
+        "thumbnail": "Sin imagen",
+        "code": "stu901",
+        "stock": 22,
+        "id": 7
+      },
+      {
+        "title": "Producto 8",
+        "description": "Este es el producto 8",
+        "price": 160,
+        "thumbnail": "Sin imagen",
+        "code": "vwx234",
+        "stock": 12,
+        "id": 8
+      },
+      {
+        "title": "Producto 9",
+        "description": "Este es el producto 9",
+        "price": 110,
+        "thumbnail": "Sin imagen",
+        "code": "yzab56",
+        "stock": 28,
+        "id": 9
+      },
+      {
+        "title": "Producto 10",
+        "description": "Este es el producto 10",
+        "price": 170,
+        "thumbnail": "Sin imagen",
+        "code": "cdef78",
+        "stock": 17,
+        "id": 10
+      }
+    ]
+}
+  
