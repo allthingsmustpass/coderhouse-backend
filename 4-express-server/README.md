@@ -13,6 +13,8 @@ Debe contar con los endpoints:
 
 - [x] La ruta `/products/:pid` que reciba por req.params el pid (product id) y devolver solo el producto solicitado, en lugar de todos los productos.
 
+- [x] Debe estar presente una carpeta `src` con `app.js` dentro.
+
 ## Uso
 Instalar las dependencias con:
 ```
