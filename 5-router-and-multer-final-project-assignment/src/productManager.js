@@ -55,8 +55,6 @@ class ProductManager {
 		  return false
 		}
 	  }
-	  
-	  
 
 	/**
      * Verifica que todos los campos requeridos estén presentes.
@@ -68,9 +66,9 @@ class ProductManager {
      * @param {number} stock - Cantidad de stock del producto.
      * @returns {boolean} - Retorna true si todos los campos están presentes, false si falta alguno.
      */
-	verifyFields(title, description, price, thumbnail, code, stock) {
+	verifyFields(title, description, code, price, status, stock, category) {
 		try {
-			const isValid = title && description && price && thumbnail && code && stock
+			const isValid = title && description && code && price && status && stock && category
 			if (!isValid) {
 				throw new Error("All fields required.")
 			}
@@ -108,12 +106,12 @@ class ProductManager {
 	 * @param {number} stock - Cantidad de stock del producto.
 	 * @returns {Promise<void>}
 	 */
-	async addProduct(title, description, price, thumbnail, code, stock) {
+	async addProduct(title, description, code, price, status, stock, category, thumbnails) {
 		if (!(await this.verifyCode(code))) {
 			return
 		}
 
-		if (!this.verifyFields(title, description, price, thumbnail, code, stock)) {
+		if (!this.verifyFields(title, description, code, price, status, stock, category, thumbnails)) {
 			return
 		}
 
@@ -128,7 +126,7 @@ class ProductManager {
 		}
 
 		const product = {
-			title, description, price, thumbnail, code, stock, id: this.id
+			title, description, code, price, status, stock, category, thumbnails, id: this.id
 		};
 		this.id++
 
@@ -237,6 +235,5 @@ class ProductManager {
 		}
 	}
 }
-
 
 module.exports = ProductManager

@@ -3,10 +3,16 @@
         {
             "title": "Producto 1 - Editado",
             "description": "Este es el producto 1 editado",
-            "price": 120,
-            "thumbnail": "Sin imagen",
-            "code": "ghi789",
-            "stock": 30,
+            "code": "abc123",
+            "price": 100,
+            "status": true,
+            "stock": 50,
+            "category": "Producto de prueba",
+            "thumbnails": [
+                "test1.png",
+                "test2.png",
+                "test3.png"
+            ],
             "id": 1
         }
     ]

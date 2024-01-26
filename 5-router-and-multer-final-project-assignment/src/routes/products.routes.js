@@ -35,8 +35,8 @@ router.get('/', async (req, res) => {
   })
   router.post(`/`, async (req, res) => {
     try {
-        const { title, description, price, thumbnail, code, stock } = req.body
-        const newproduct = await pm.addProduct(title, description, price, thumbnail, code, stock)
+        const { title, description, code, price, status, stock, category, thumbnails } = req.body
+        const newproduct = await pm.addProduct(title, description, code, price, status, stock, category, thumbnails)
         return res.json(newproduct)
     } catch (e) {
         res.status(500).json({ error: '500: Internal server error'})
@@ -49,8 +49,8 @@ router.get('/', async (req, res) => {
   
       if (searchId) {
         console.log("FOUND PRODUCT TO EDIT")
-        const { title, description, price, thumbnail, code, stock } = req.body
-        await pm.updateProduct(id, { title, description, price, thumbnail, code, stock })
+        const { title, description, code, price, status, stock, category, thumbnails} = req.body
+        await pm.updateProduct(id, { title, description, code, price, status, stock, category, thumbnails})
         return res.json({ message: 'Product updated successfully' })
       } else {
         return res.status(404).json({ error: 'Product not found' })
