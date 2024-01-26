@@ -2,24 +2,31 @@
 
 Esta server corresponde al tercer desafío entregable del curso de Programación Backend en Coderhouse, se trata de un server basado en Express donde se puede hacer consultas a una persistencia de archivos.
 
-#### Los aspectos a incluir son:
+#### TODO:
 
-- [x] Se deberá utilizar la clase ProductManager que actualmente utilizamos con la persistencia de archivos.
+- Agregar carrito.
+- La ruta GET /:cid deberá listar los productos que pertenezcan al carrito con el parámetro cid proporcionados.
+- La ruta POST /:cid/product/:pid deberá agregar el producto al arreglo “products” del carrito seleccionado, agregándose como un objeto bajo el
+siguiente formato:
+1.  product: SÓLO DEBE CONTENER EL ID DEL PRODUCTO (Es crucial que no agregues el producto completo)
+2. quantity: debe contener el número de ejemplares de dicho producto. El producto, de momento, se agregará de uno en uno.
 
-- [x] Desarrollar un servidor Express que, en su archivo app.js importe al archivo de ProductManager.
+Además, si un producto ya existente intenta agregarse al producto, incrementar el campo quantity de dicho producto.
 
-Debe contar con los endpoints: 
-- [x] La ruta `/products` que lee el archivo de productos y los devuelve dentro de un objeto con el soporte `?limit=` que recibe un límite de productos y si no recibe una query de límite, se devuelven todos los productos.
-
-- [x] La ruta `/products/:pid` que reciba por req.params el pid (product id) y devolver solo el producto solicitado, en lugar de todos los productos.
-
-- [x] Debe estar presente una carpeta `src` con `app.js` dentro.
+- Persistencia de la información se implementará utilizando el file system, donde los archivos “productos,json” y “carrito.json”, respaldan la información.
+- Intentar que se reste 'stock' según cantidad de productos agregados al carrito. 
+- Resolver que no puedan coexistir dos 'code' idénticos una vez que se edita el producto.
 
 ## Uso
 Instalar las dependencias con:
 ```
 npm install
 ```
+Y ejecutar
+```
+node app.js
+```
+
 Ejecutar desde http://localhost:8080/ o cualquier herramienta para testear API's con una GET request.
 Se permite:
 

@@ -126,7 +126,7 @@ class ProductManager {
 		}
 
 		const product = {
-			title, description, code, price, status, stock, category, thumbnails, id: this.id
+			title, description, code, price, status:true, stock, category, thumbnails, id: this.id
 		};
 		this.id++
 
