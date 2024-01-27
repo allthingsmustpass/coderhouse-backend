@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router()
 router.use(express.urlencoded({ extended: true }));
-const productManager = require("../productManager.js")
-const pm = new productManager('../src/products.json')
+const productManager = require("../classes/productManager.js")
+const pm = new productManager('../src/json/products.json')
 
 router.get('/', async (req, res) => {
     try {
@@ -41,7 +41,9 @@ router.get('/', async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: '500: Internal server error'})
     }
+
   })
+  
   router.put(`/:id`, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
@@ -60,6 +62,7 @@ router.get('/', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' })
     }
   });
+
   router.delete(`/:id`, async(req, res) => {
     try {
       const id = parseInt(req.params.id)
