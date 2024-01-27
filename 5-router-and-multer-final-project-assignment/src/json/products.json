@@ -1,21 +1,6 @@
 {
     "products": [
         {
-            "title": "Smartphone XYZ",
-            "description": "Powerful smartphone with advanced features.",
-            "code": "xyz789",
-            "price": 599.99,
-            "status": true,
-            "stock": 30,
-            "category": "Electronics",
-            "thumbnails": [
-                "xyz789_image1.jpg",
-                "xyz789_image2.jpg",
-                "xyz789_image3.jpg"
-            ],
-            "id": 1
-        },
-        {
             "title": "Laptop Pro",
             "description": "High-performance laptop for professionals.",
             "code": "lpt456",
@@ -149,6 +134,21 @@
                 "mo456_image3.jpg"
             ],
             "id": 10
+        },
+        {
+            "title": "Smartphone XYZ",
+            "description": "Powerful smartphone with advanced features.",
+            "code": "xyz789",
+            "price": 599.99,
+            "status": true,
+            "stock": 30,
+            "category": "Electronics",
+            "thumbnails": [
+                "xyz789_image1.jpg",
+                "xyz789_image2.jpg",
+                "xyz789_image3.jpg"
+            ],
+            "id": 11
         }
     ]
 }

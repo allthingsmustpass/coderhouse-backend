@@ -1,12 +1,22 @@
 const fs = require("fs/promises")
 
+/**
+ * Clase que gestiona operaciones con productManager.
+ */
 class CartManager {
+    /**
+     * Constructor de la clase.
+     * @param {string} path - Ruta del archivo JSON que almacena la información de los carritos.
+     */
     constructor(path) {
         this.path = path;
         this.id = 1;
         this.cartList = [];
     }
 
+    /**
+     * Asegura la existencia del archivo JSON. Si no existe, lo crea con un formato inicial.
+     */
     async ensureFile() {
         try {
             await fs.access(this.path)
@@ -15,6 +25,9 @@ class CartManager {
         }
     }
 
+     /** Crea un nuevo carrito y lo guarda en el archivo JSON.
+     * @returns {Object} - El carrito creado.
+     */
     async createCart() {
         try {
             await this.ensureFile();
@@ -41,6 +54,11 @@ class CartManager {
         }
     }
 
+    /**
+     * Obtiene un carrito por su ID.
+     * @param {number} cartId - ID del carrito a buscar.
+     * @returns {Object|null} - El carrito encontrado o null si no se encuentra.
+     */
     async getCartById(cartId) {
         try {
             const currentContent = await fs.readFile(this.path, 'utf-8')
@@ -59,7 +77,13 @@ class CartManager {
             console.error("Error: ", error)
         }
     }
-
+    
+    /**
+     * Agrega un producto a un carrito específico con la cantidad especificada.
+     * @param {number} cartId - ID del carrito.
+     * @param {number} productId - ID del producto a agregar.
+     * @param {number} quantity - Cantidad del producto a agregar.
+     */
     async addProductToCart(cartId, productId, quantity) {
         try {
             const currentContent = await fs.readFile(this.path, 'utf-8')
