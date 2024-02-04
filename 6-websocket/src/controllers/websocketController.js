@@ -3,10 +3,14 @@ const socketIO = require("socket.io");
 const configureWebSocket = (server, productManager) => {
   const io = socketIO(server);
 
-  io.on("connection", (socket) => {
+  io.on("connection", async (socket) => {
     console.log("Cliente conectado:", socket.id);
-    const initialProducts = productManager.getProducts();
-    socket.emit("updateProducts", initialProducts);
+    try {
+      const initialProducts = await productManager.getProducts();
+      socket.emit("updateProducts", initialProducts);
+    } catch (error) {
+      console.error("Error obteniendo productos:", error);
+    }
   });
 
   return io;

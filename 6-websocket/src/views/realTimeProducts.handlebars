@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Time Products</title>
 </head>
-
 <body>
-    <h1>AAAAAAAH</h1>
-</body>
+  <h1>Real Time Products</h1>
+  <ul id="productList"></ul>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  <script>
+    const socket = io('/realtimeproducts');
+    
+    socket.on('updateProducts', (products) => {
+      console.log('Products updated:', products);
+
+      // Update the product list in the HTML
+      const productList = document.getElementById('productList');
+      productList.innerHTML = products.map(product => `<li>${product.name}</li>`).join('');
+    });
+  </script>
+</body>
 </html>
