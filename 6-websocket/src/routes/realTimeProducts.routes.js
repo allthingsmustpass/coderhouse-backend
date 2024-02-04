@@ -11,7 +11,6 @@ const configureWebSocketHandler = (server) => {
     console.log("Client connected:", socket.id);
     try {
       const initialProducts = await pm.getProducts();
-      let responseProducts = initialProducts
       socket.emit("updateProducts", initialProducts);
     } catch (error) {
       console.error("Error:", error);

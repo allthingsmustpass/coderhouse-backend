@@ -12,15 +12,25 @@
    {{#if product}}
   <div class="product">
     <h2>{{product.title}}</h2>
-    <p>{{product.description}}</p>
-    <p>:{{product.price}}$</p>
+    <p>Description: {{product.description}}</p>
+    <p>Price: {{product.price}}$</p>
+    <p>Status: {{product.status}}</p>
+    <p>Stock: {{product.stock}}</p>
+    <p>Category: {{product.category}}</p>
+    <p>Thumbnail: {{product.thumbnail}}</p>
+    <p>ID: {{product.id}}</p>
   </div>
 {{else}}
   {{#each products}}
     <div class="product">
       <h2>{{title}}</h2>
-      <p>{{description}}</p>
-      <p>:{{price}}$</p>
+      <p>Description: {{description}}</p>
+      <p>Price: {{price}}$</p>
+      <p>Status: {{status}}</p>
+      <p>Stock: {{stock}}</p>
+      <p>Category: {{category}}</p>
+      <p>Thumbnail: {{thumbnail}}</p>
+      <p>ID: {{id}}</p>
     </div>
   {{/each}}
 {{/if}}
