@@ -7,19 +7,41 @@
 </head>
 <body>
   <h1>Real Time Products</h1>
-  <ul id="productList"></ul>
-
+  <!-- En tu archivo handlebars -->
+  <ul id="productList">
+    {{#each products}}
+      <li>
+        <strong>ID:</strong> {{this.id}}<br>
+        <strong>Title:</strong> {{this.title}}<br>
+        <strong>Description:</strong> {{this.description}}<br>
+        <strong>Price:</strong> {{this.price}}<br>
+        <strong>Status:</strong> {{this.status}}<br>
+        <strong>Stock:</strong> {{this.stock}}<br>
+        <strong>Category:</strong> {{this.category}}<br>
+        <strong>Thumbnail:</strong> {{this.thumbnail}}<br>
+      </li>
+    {{/each}}
+  </ul>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
   <script>
     const socket = io('/realtimeproducts');
-    
     socket.on('updateProducts', (products) => {
-      console.log('Products updated:', products);
+    console.log('Products updated:', products);
+    const productList = document.getElementById('productList');
+    productList.innerHTML = products.map(product => `
+      <li>
+        <strong>ID:</strong> ${product.id} <br>
+        <strong>Title:</strong> ${product.title} <br>
+        <strong>Description:</strong> ${product.description} <br>
+        <strong>Price:</strong> ${product.price} <br>
+        <strong>Status:</strong> ${product.status ? 'Active' : 'Inactive'} <br>
+        <strong>Stock:</strong> ${product.stock} <br>
+        <strong>Category:</strong> ${product.category} <br>
+        <strong>Thumbnail:</strong> ${product.thumbnail} <br>
+      </li>
+    `).join('');
 
-      // Update the product list in the HTML
-      const productList = document.getElementById('productList');
-      productList.innerHTML = products.map(product => `<li>${product.name}</li>`).join('');
-    });
+});
   </script>
 </body>
 </html>

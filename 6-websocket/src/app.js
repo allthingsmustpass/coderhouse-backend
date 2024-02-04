@@ -37,7 +37,6 @@ app.use(`/${API_PREFIX}/carts`, cartRoutes)
 realTimeProductsRoutes.configureWebSocketHandler(server);
 app.use(`/${API_PREFIX}/realtimeproducts`, realTimeProductsRoutes.router);
 
-
 server.listen(PORT, () => {
   console.log(`API listening: http://localhost:${PORT}`);
 });

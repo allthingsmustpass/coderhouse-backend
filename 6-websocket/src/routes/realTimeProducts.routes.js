@@ -8,13 +8,13 @@ const configureWebSocketHandler = (server) => {
   const io = configureWebSocket(server, productManager);
 
   io.of("/realtimeproducts").on("connection", async (socket) => {
-    console.log("Cliente conectado a WebSocket:", socket.id);
+    console.log("Client connected:", socket.id);
     try {
       const initialProducts = await pm.getProducts();
       let responseProducts = initialProducts
       socket.emit("updateProducts", initialProducts);
     } catch (error) {
-      console.error("Error obteniendo productos:", error);
+      console.error("Error:", error);
     }
   });
 };
