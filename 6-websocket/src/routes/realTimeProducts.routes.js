@@ -1,23 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const configureWebSocket = require("../controllers/websocketController");
-const ProductManager = require("../classes/productManager");
+const productManager = require("../classes/ProductManager");
 
-// Crear una instancia del gestor de productos
-const productManager = new ProductManager("./src/json/products.json");
+const configureWebSocketHandler = (server) => {
+  const io = configureWebSocket(server, productManager);
 
-// Ruta para la vista realTimeProducts
-router.get("/realtimeproducts", (req, res) => {
-  // Configurar WebSocket y pasar la instancia del gestor de productos
-  const websocketIO = configureWebSocket(req.app.io.of("/realtimeproducts"), productManager);
-
-  // Imprimir mensaje cuando el cliente se conecta
-  websocketIO.on("connection", (socket) => {
-    console.log("Cliente conectado");
+  io.of("/realtimeproducts").on("connection", (socket) => {
+    console.log("Cliente conectado:", socket.id);
+    const initialProducts = productManager.getProducts();
+    socket.emit("updateProducts", initialProducts);
   });
+};
 
-  // Renderizar la vista con la lista de productos
+router.get("/", (req, res) => {
+  console.log("Ingresado");
   res.render("realTimeProducts");
 });
 
-module.exports = router;
+module.exports = { router, configureWebSocketHandler };
