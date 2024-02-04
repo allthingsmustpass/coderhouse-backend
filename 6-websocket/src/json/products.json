@@ -1,0 +1,154 @@
+{
+    "products": [
+        {
+            "title": "Laptop Pro",
+            "description": "High-performance laptop for professionals.",
+            "code": "lpt456",
+            "price": 1299.99,
+            "status": true,
+            "stock": 15,
+            "category": "Computers",
+            "thumbnails": [
+                "lpt456_image1.png",
+                "lpt456_image2.png",
+                "lpt456_image3.png"
+            ],
+            "id": 2
+        },
+        {
+            "title": "Coffee Maker",
+            "description": "Automatic coffee maker with multiple brewing options.",
+            "code": "cm789",
+            "price": 79.99,
+            "status": false,
+            "stock": 5,
+            "category": "Appliances",
+            "thumbnails": [
+                "cm789_image1.jpg",
+                "cm789_image2.jpg",
+                "cm789_image3.jpg"
+            ],
+            "id": 3
+        },
+        {
+            "title": "Wireless Headphones",
+            "description": "Comfortable wireless headphones with noise cancellation.",
+            "code": "wh456",
+            "price": 149.99,
+            "status": true,
+            "stock": 20,
+            "category": "Audio",
+            "thumbnails": [
+                "wh456_image1.jpg",
+                "wh456_image2.jpg",
+                "wh456_image3.jpg"
+            ],
+            "id": 4
+        },
+        {
+            "title": "Fitness Tracker",
+            "description": "Track your fitness goals with this advanced fitness tracker.",
+            "code": "ft789",
+            "price": 49.99,
+            "status": true,
+            "stock": 25,
+            "category": "Wearables",
+            "thumbnails": [
+                "ft789_image1.jpg",
+                "ft789_image2.jpg",
+                "ft789_image3.jpg"
+            ],
+            "id": 5
+        },
+        {
+            "title": "Gaming Mouse",
+            "description": "Precision gaming mouse for an immersive gaming experience.",
+            "code": "gm234",
+            "price": 79.99,
+            "status": true,
+            "stock": 15,
+            "category": "Gaming",
+            "thumbnails": [
+                "gm234_image1.png",
+                "gm234_image2.png",
+                "gm234_image3.png"
+            ],
+            "id": 6
+        },
+        {
+            "title": "Portable Speaker",
+            "description": "Compact and powerful portable speaker for music on the go.",
+            "code": "ps567",
+            "price": 69.99,
+            "status": true,
+            "stock": 10,
+            "category": "Audio",
+            "thumbnails": [
+                "ps567_image1.jpg",
+                "ps567_image2.jpg",
+                "ps567_image3.jpg"
+            ],
+            "id": 7
+        },
+        {
+            "title": "Smart TV",
+            "description": "Ultra HD smart TV with built-in streaming apps.",
+            "code": "tv890",
+            "price": 899.99,
+            "status": true,
+            "stock": 8,
+            "category": "Electronics",
+            "thumbnails": [
+                "tv890_image1.jpg",
+                "tv890_image2.jpg",
+                "tv890_image3.jpg"
+            ],
+            "id": 8
+        },
+        {
+            "title": "Digital Camera",
+            "description": "Capture memorable moments with this high-quality digital camera.",
+            "code": "dc123",
+            "price": 399.99,
+            "status": true,
+            "stock": 12,
+            "category": "Photography",
+            "thumbnails": [
+                "dc123_image1.jpg",
+                "dc123_image2.jpg",
+                "dc123_image3.jpg"
+            ],
+            "id": 9
+        },
+        {
+            "title": "Microwave Oven",
+            "description": "Convenient microwave oven for quick and easy cooking.",
+            "code": "mo456",
+            "price": 129.99,
+            "status": true,
+            "stock": 18,
+            "category": "Appliances",
+            "thumbnails": [
+                "mo456_image1.jpg",
+                "mo456_image2.jpg",
+                "mo456_image3.jpg"
+            ],
+            "id": 10
+        },
+        {
+            "title": "Smartphone XYZ",
+            "description": "Powerful smartphone with advanced features.",
+            "code": "xyz789",
+            "price": 599.99,
+            "status": true,
+            "stock": 30,
+            "category": "Electronics",
+            "thumbnails": [
+                "xyz789_image1.jpg",
+                "xyz789_image2.jpg",
+                "xyz789_image3.jpg"
+            ],
+            "id": 11
+        }
+    ]
+}
