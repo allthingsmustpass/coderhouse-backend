@@ -1,0 +1,36 @@
+{
+    "products": [
+        {
+            "title": "Smartphone XYZ",
+            "description": "Powerful smartphone with advanced features.",
+            "code": "test",
+            "price": 599.99,
+            "status": true,
+            "stock": 30,
+            "category": "Electronics",
+            "thumbnails": [
+                "xyz789_image1.jpg",
+                "xyz789_image2.jpg",
+                "xyz789_image3.jpg"
+            ],
+            "_id": "65d141cf1666b3fde528de41",
+            "__v": 0
+        },
+        {
+            "title": "PC XYZ",
+            "description": "Powerful PC with advanced features.",
+            "code": "dfg123",
+            "price": 499.99,
+            "status": true,
+            "stock": 10,
+            "category": "Electronics",
+            "thumbnails": [
+                "pc_image1.jpg",
+                "pc_image2.jpg",
+                "pc_image3.jpg"
+            ],
+            "_id": "65d15c34eb9e1ec6588c4beb",
+            "__v": 0
+        }
+    ]
+}
