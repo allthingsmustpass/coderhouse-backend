@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Socket.IO chat</title>
+  <title>Chat App</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <div id="usernamePopup" style="display:none">
     <input id="usernameInput" type="text">
     <button id="usernameSubmit">Submit</button>
   </div>
-  <ul id="messages"></ul>
+  <ul id="messages">
+    {{#each messages}}
+      <li>{{user}}: {{message}}</li>
+    {{/each}}
+  </ul>
   <form id="form" action="">
     <label for="input">Message</label>
     <input id="input" autocomplete="off" /><button type="submit">Send</button>
@@ -21,7 +23,7 @@
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io('/chat');
+  var socket = io();
 
   var form = document.getElementById('form');
   var input = document.getElementById('input');
@@ -37,7 +39,7 @@
 
   socket.on('chat message', function (msg) {
     var item = document.createElement('li');
-    item.textContent = msg;
+    item.textContent = msg.user + ": " + msg.message;
     messages.appendChild(item);
   });
 

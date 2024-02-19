@@ -4,12 +4,12 @@ const Product = require('./models/ProductModel');
 class ProductManager {
     /**
      * Crea un nuevo gestor de productos.
-     * @param {string} path - Ruta del archivo donde se almacenarán los datos de los productos.
+     * @param {string} path
      */
     constructor(path) {
         this.path = path;
-        this.id = 1; // Identificador único para los productos
-        this.productList = []; // Lista de productos almacenados en memoria
+        this.id = 1; 
+        this.productList = [];
         this.loadLastId();
     }
 

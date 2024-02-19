@@ -1,20 +1,21 @@
 const socketIO = require("socket.io");
-const productManager = require("../classes/dao/ProductManager.js");
+const ProductManager = require("../classes/dao/ProductManager");
 
-const configureWebSocket = (server, productManager) => {
-  const io = socketIO(server);
+const configureWebSocket = (server) => {
+    const io = socketIO(server);
+    const productManager = new ProductManager();
 
-  io.on("connection", async (socket) => {
-    console.log("Client:", socket.id);
-    try {
-      const initialProducts = await productManager.getProducts();
-      socket.emit("updateProducts", initialProducts);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  });
+    io.on("connection", async (socket) => {
+        console.log("Client from websocketController:", socket.id);
+        try {
+            const initialProducts = await productManager.getProducts();
+            socket.emit("updateProducts", initialProducts);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    });
 
-  return io;
+    return io;
 };
 
 module.exports = configureWebSocket;

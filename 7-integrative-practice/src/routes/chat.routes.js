@@ -1,47 +1,51 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Message = require('../classes/dao/models/ChatModel');
+
+const Message = require('../classes/dao/models/ChatModel'); 
 
 const configureChatroom = (io) => {
-    io.on('connection', (socket) => {
-        console.log('User connected:', socket.id);
 
-        socket.on('username', (username) => {
-            console.log('Username received:', username);
-            socket.username = username;
-            console.log('User connected:', socket.username);
-            socket.emit('user connect notice', `${username} connected`);
-        });
+  io.on('connection', (socket) => {
 
-        socket.on('disconnect', () => {
-            console.log('User disconnected:', socket.username);
-        });
+    console.log('User connected:', socket.id);
 
-        socket.on('chat message', async (msg) => {
-            console.log('Message received:', msg);
-            const newMessage = new Message({
-                user: socket.username,
-                message: msg
-            });
-          
-            try {
-                await newMessage.save();
-            } catch (error) {
-                console.error('Error saving message:', error);
-            }
-        
-            io.emit('chat message', `${socket.username}: ${msg}`);
-        });
+    socket.on('setUsername', (username) => {
+      socket.username = username;
+      console.log('User connected:', socket.username);
     });
-};
 
-router.get('/', (req, res) => {
-    try {
-        res.render('chatview');
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
+    socket.on('disconnect', () => {
+      console.log('User disconnected:', socket.username); 
+    });
+
+    socket.on('chatMessage', async (msg) => {
+      
+      const message = new Message({
+        username: socket.username,
+        message: msg
+      });
+
+      await message.save();
+
+      io.emit('newMessage', message);
+
+    });
+
+  });
+
+}
+
+
+router.get('/', async (req, res) => {
+
+  try {
+    const messages = await Message.find();
+    res.render('chatview', { messages }); 
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+
 });
 
-module.exports = { router, configureChatroom };
+module.exports = { configureChatroom, router };
