@@ -1,4 +1,5 @@
 const socketIO = require("socket.io");
+const productManager = require("../classes/dao/ProductManager.js");
 
 const configureWebSocket = (server, productManager) => {
   const io = socketIO(server);

@@ -8,6 +8,11 @@
                     "quantity": 1
                 }
             ]
+        },
+        {
+            "products": [],
+            "_id": "65d29df8c24cbd2b6082259d",
+            "__v": 0
         }
     ]
 }

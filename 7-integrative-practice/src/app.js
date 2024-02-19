@@ -7,6 +7,7 @@ const { mongoDBconnection } = require("./database/mongo.config");
 const productsRoutes = require("./routes/products.routes");
 const cartRoutes = require("./routes/cart.routes");
 const realTimeProductsRoutes = require("./routes/realTimeProducts.routes");
+const chatRoutes = require('./routes/chat.routes')
 const path = require('path');
 const API_PREFIX = "api";
 
@@ -14,6 +15,7 @@ const API_PREFIX = "api";
 const PORT = 8080;
 const app = express();
 const server = http.createServer(app);
+const io = socketIO(server);
 
 /* Handlebars */
 app.engine(
@@ -32,10 +34,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /* Routes */
+app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
 app.use(`/${API_PREFIX}/products`, productsRoutes)
 app.use(`/${API_PREFIX}/carts`, cartRoutes)
 realTimeProductsRoutes.configureWebSocketHandler(server);
 app.use(`/${API_PREFIX}/realtimeproducts`, realTimeProductsRoutes.router);
+chatRoutes.configureChatroom(io);
+app.use(`/${API_PREFIX}/chatview`, chatRoutes.router)
 
 /* Mongo */
 mongoDBconnection()
@@ -45,7 +50,6 @@ mongoDBconnection()
   .catch((error) => {
     console.error("Error al conectar a MongoDB Atlas:", error);
   });
-
 
 server.listen(PORT, () => {
   console.log(`API listening: http://localhost:${PORT}`);
