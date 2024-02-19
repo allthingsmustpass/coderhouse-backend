@@ -39,11 +39,12 @@ app.use(`/${API_PREFIX}/products`, productsRoutes)
 app.use(`/${API_PREFIX}/carts`, cartRoutes)
 realTimeProductsRoutes.configureWebSocketHandler(server);
 app.use(`/${API_PREFIX}/realtimeproducts`, realTimeProductsRoutes.router);
-chatRoutes.configureChatroom(io);
-app.use(`/${API_PREFIX}/chatview`, chatRoutes.router)
+//chatRoutes.configureChatHandler(server);
+//app.use(`/${API_PREFIX}/chatview`, chatRoutes.router)
 
 /* Mongo */
 mongoDBconnection()
+
   .then(() => {
     console.log("Conexión a MongoDB Atlas establecida correctamente");
   })

@@ -1,56 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat App</title>
-  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="usernamePopup" style="display:none">
-    <input id="usernameInput" type="text">
-    <button id="usernameSubmit">Submit</button>
+
+  <h1>Chat App</h1>
+
+  <div id="chat-container">
+
+    <div id="chat-window">
+    
+      <div id="output"></div>
+
+    </div>
+
+    <input id="handle" type="text" placeholder="Handle" />
+    <input id="message" type="text" placeholder="Message" />
+
+    <button id="send">Send</button>
+
   </div>
-  <ul id="messages">
-    {{#each messages}}
-      <li>{{user}}: {{message}}</li>
-    {{/each}}
-  </ul>
-  <form id="form" action="">
-    <label for="input">Message</label>
-    <input id="input" autocomplete="off" /><button type="submit">Send</button>
-  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+
+    const socket = io();
+
+    const handle = document.getElementById('handle');
+    const message = document.getElementById('message');
+    const output = document.getElementById('output');
+
+    const sendBtn = document.getElementById('send');
+
+    sendBtn.addEventListener('click', () => {
+      socket.emit('chatMessage', {
+        username: handle.value,
+        message: message.value 
+      });
+    });
+
+    socket.on('newMessage', (msg) => {
+      const p = document.createElement('p');
+      p.innerHTML = `<strong>${msg.username}</strong>: ${msg.message}`;
+      output.appendChild(p);
+    });
+
+  </script>
+
 </body>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io();
-
-  var form = document.getElementById('form');
-  var input = document.getElementById('input');
-  var messages = document.getElementById('messages');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (input.value) {
-      socket.emit('chat message', input.value);
-      input.value = '';
-    }
-  });
-
-  socket.on('chat message', function (msg) {
-    var item = document.createElement('li');
-    item.textContent = msg.user + ": " + msg.message;
-    messages.appendChild(item);
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('usernamePopup').style.display = 'block';
-  });
-
-  document.getElementById('usernameSubmit').addEventListener('click', () => {
-    const username = document.getElementById('usernameInput').value;
-    socket.emit('username', username);
-    document.getElementById('usernamePopup').style.display = 'none';
-  });
-</script>
 </html>
