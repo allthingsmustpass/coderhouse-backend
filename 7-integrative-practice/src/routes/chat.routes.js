@@ -6,9 +6,9 @@ const { processChatMessage } = require("../controllers/chatController");
 const configureChatHandler = (server) => {
     const io = socketIO(server);
     io.of("/chatview").on("connection", async (socket) => {
-        console.log("Client connected on chat:", socket.id);
+        console.log("Client connected from chatController:", socket.id);
         try {
-            await processChatMessage(socket);
+            await processChatMessage(io, socket);
         } catch (error) {
             console.error("Error:", error);
         }

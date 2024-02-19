@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const configureWebSocket = require("../controllers/websocketController");
 const productManager = require("../classes/dao/ProductManager");
 const pm = new productManager("./src/json/products.json");
 
-const configureWebSocketHandler = (server) => {
-const io = configureWebSocket(server, productManager);
 
+const configureWebSocketHandler = (io) => {
   io.of("/realtimeproducts").on("connection", async (socket) => {
-    console.log("Client connected:", socket.id);
+    console.log("Client connected from realTimeProducts:", socket.id);
     try {
       const initialProducts = await pm.getProducts();
       socket.emit("updateProducts", initialProducts);

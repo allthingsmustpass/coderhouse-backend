@@ -37,10 +37,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
 app.use(`/${API_PREFIX}/products`, productsRoutes)
 app.use(`/${API_PREFIX}/carts`, cartRoutes)
-realTimeProductsRoutes.configureWebSocketHandler(server);
 app.use(`/${API_PREFIX}/realtimeproducts`, realTimeProductsRoutes.router);
-//chatRoutes.configureChatHandler(server);
-//app.use(`/${API_PREFIX}/chatview`, chatRoutes.router)
+app.use(`/${API_PREFIX}/chatview`, chatRoutes.router)
+
+realTimeProductsRoutes.configureWebSocketHandler(io);
+chatRoutes.configureChatHandler(io);
+
+
 
 /* Mongo */
 mongoDBconnection()

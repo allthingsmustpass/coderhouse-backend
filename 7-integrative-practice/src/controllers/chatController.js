@@ -1,6 +1,6 @@
-const Message = require('../classes/dao/models/ChatModel');;
+const Message = require('../classes/dao/models/ChatModel');
 
-const processChatMessage = async (socket) => {
+const processChatMessage = async (io, socket) => {
     try {
         if (!socket.username) {
             socket.on('setUsername', (username) => {
@@ -17,7 +17,7 @@ const processChatMessage = async (socket) => {
                 message: msg
             });
             await newMessage.save();
-            socket.broadcast.emit('newMessage', { user: socket.username, message: msg });
+            io.emit('newMessage', { user: socket.username, message: msg });
         });
 
         socket.on('disconnect', () => {
