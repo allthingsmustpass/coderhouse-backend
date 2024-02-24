@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.title }}</title>
+</head>
+<body>
+    <h1>{{ product.title }}</h1>
+    <p>Description: {{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Category: {{ product.category }}</p>
+    <form action="/api/carts/:cid/products/:pid" method="post">
+        <input type="hidden" name="productId" value="{{ product._id }}">
+        <input type="number" name="quantity" value="1" min="1">
+        <button type="submit">Add to Cart</button>
+    </form>
+</body>
+</html>

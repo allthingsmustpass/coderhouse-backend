@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+
+<body>
+    <h1>Products!</h1>
+   {{#if product}}
+  <div class="product">
+    <h2>{{product.title}}</h2>
+    <p>Description: {{product.description}}</p>
+    <p>Price: {{product.price}}$</p>
+    <p>Status: {{product.status}}</p>
+    <p>Stock: {{product.stock}}</p>
+    <p>Category: {{product.category}}</p>
+    <p>Thumbnail: {{product.thumbnail}}</p>
+  </div>
+{{else}}
+  {{#each products}}
+    <div class="product">
+      <h2>{{title}}</h2>
+      <p>Description: {{description}}</p>
+      <p>Price: {{price}}$</p>
+      <p>Status: {{status}}</p>
+      <p>Stock: {{stock}}</p>
+      <p>Category: {{category}}</p>
+      <p>Thumbnail: {{thumbnail}}</p>
+    </div>
+  {{/each}}
+{{/if}}
+</body>
+</html>
