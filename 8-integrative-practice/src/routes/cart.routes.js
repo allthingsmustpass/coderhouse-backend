@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const cartId = req.params.id;
-    const cart = await cm.getCartById(cartId);
+    const cart = await cm.getCartById(cartId).populate('products');
 
     if (cart) {
       return res.json({ cart });
@@ -28,7 +28,6 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ error: "500: Internal server error" });
   }
 });
-
 
 router.post("/", async (req, res) => {
   try {
@@ -91,7 +90,6 @@ router.put("/:cid/products/:pid", async (req, res) => {
     return res.status(500).json({ error: "500: Internal server error" });
   }
 });
-
 
 router.delete("/:cid", async (req, res) => {
   try {

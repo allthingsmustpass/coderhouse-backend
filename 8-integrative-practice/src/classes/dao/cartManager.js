@@ -63,7 +63,6 @@ class CartManager {
     async getAllCarts() {
         try {
             const carts = await Cart.find();
-            this.cartList = carts;
             return carts;
         } catch (error) {
             console.error("Error obteniendo carritos:", error);

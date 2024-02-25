@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const productManager = require("../classes/dao/ProductManager.js");
 const pm = new productManager();
+const Product = require('../classes/dao/models/ProductModel.js');
 
 router.get("/", async (req, res) => {
   try {
@@ -9,20 +10,47 @@ router.get("/", async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const sort = req.query.sort || null;
     const query = req.query.query || null;
+    let filter = {};
 
-    const result = await pm.getProducts({ limit, page, sort, query });
+    if (query) {
+      const [key, value] = query.split(":");
+      filter[key] = value;
+    }
 
-    res.json({
+    const allProducts = await pm.getProducts({ limit, page, sort, query });
+    let responseProducts = allProducts.products;
+
+    if (limit && limit > 0) {
+      responseProducts = responseProducts.slice(0, limit);
+    }
+
+    if (query) {
+      responseProducts = await Product.find(filter);
+    }
+
+    const cleanProducts = responseProducts.map(product => {
+      return {
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        status: product.status,
+        stock: product.stock,
+        category: product.category,
+        thumbnail: product.thumbnail
+      };
+    });
+
+    res.render("productsindex", {
       status: "success",
-      payload: result.products,
-      totalPages: result.totalPages,
-      prevPage: result.prevPage,
-      nextPage: result.nextPage,
-      page: result.page,
-      hasPrevPage: result.hasPrevPage,
-      hasNextPage: result.hasNextPage,
-      prevLink: result.hasPrevPage ? `/api/products?limit=${limit}&page=${result.prevPage}&sort=${sort}&query=${query}` : null,
-      nextLink: result.hasNextPage ? `/api/products?limit=${limit}&page=${result.nextPage}&sort=${sort}&query=${query}` : null
+      products: cleanProducts,
+      totalPages: allProducts.totalPages,
+      prevPage: allProducts.prevPage,
+      nextPage: allProducts.nextPage,
+      page: allProducts.page,
+      hasPrevPage: allProducts.hasPrevPage,
+      hasNextPage: allProducts.hasNextPage,
+      prevLink: allProducts.hasPrevPage ? `/api/products?limit=${limit}&page=${allProducts.prevPage}&sort=${sort}&query=${query}` : null,
+      nextLink: allProducts.hasNextPage ? `/api/products?limit=${limit}&page=${allProducts.nextPage}&sort=${sort}&query=${query}` : null
     });
   } catch (error) {
     console.error(error);
@@ -30,13 +58,23 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const searchId = await pm.getProductById(id);
+
     if (searchId) {
-      res.render('products', { product: searchId });
+      const cleanProduct = {
+        title: searchId.title,
+        description: searchId.description,
+        price: searchId.price,
+        status: searchId.status,
+        stock: searchId.stock,
+        category: searchId.category,
+        thumbnail: searchId.thumbnail
+      };
+  
+      res.render('product', { product: cleanProduct });
     } else {
       res.status(404).json({ error: "Product not found" });
     }
@@ -44,22 +82,6 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-router.get("/:id/view", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const product = await pm.getProductById(id);
-    if (product) {
-      return res.render('product', { product });
-    } else {
-      return res.status(404).json({ error: "Product not found" });
-    }
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
 
 router.post("/", async (req, res) => {
   try {

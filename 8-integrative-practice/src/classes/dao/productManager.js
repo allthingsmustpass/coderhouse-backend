@@ -64,11 +64,10 @@ class ProductManager {
     async getProducts() {
         try {
             const products = await Product.find();
-            this.productList = products;
-            return products;
+            return { products };
         } catch (error) {
             console.error("Error obteniendo productos:", error);
-            return [];
+            return { products: [], total: 0 };
         }
     }
 
@@ -76,7 +75,14 @@ class ProductManager {
      * Obtiene un producto por su ID.
      */
     async getProductById(id) {
-        return this.productList.find(product => product.id === id);
+        try {
+            const product = await Product.findById(id);
+            console.log(product)
+            return product;
+        } catch (error) {
+            console.error("Error obteniendo producto por ID:", error);
+            return null;
+        }
     }
 
     /**

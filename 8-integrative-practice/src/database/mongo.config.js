@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const DB_HOST = "localhost";
 const DB_NAME = "ecommerce";
 const DB_PORT = 8080;
-const USERNAME = "user";
-const KEY = "key";
+const USERNAME = "manducatomase";
+const KEY = "Uov00kJsvTAmcRM9";
 
 const configConnection = {
   url: `mongodb+srv://${USERNAME}:${KEY}@cluster0.llc9gue.mongodb.net/?retryWrites=true&w=majority`,

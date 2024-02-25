@@ -7,9 +7,13 @@
 </head>
 <body>
     <h1>{{ product.title }}</h1>
-    <p>Description: {{ product.description }}</p>
-    <p>Price: {{ product.price }}</p>
-    <p>Category: {{ product.category }}</p>
+    <p>Description: {{product.description}}</p>
+    <p>Price: {{product.price}}$</p>
+    <p>Status: {{product.status}}</p>
+    <p>Stock: {{product.stock}}</p>
+    <p>Category: {{product.category}}</p>
+    <p>Thumbnail: {{product.thumbnail}}</p>
+    <p>ID: {{product._id}}</p>
     <form action="/api/carts/:cid/products/:pid" method="post">
         <input type="hidden" name="productId" value="{{ product._id }}">
         <input type="number" name="quantity" value="1" min="1">
