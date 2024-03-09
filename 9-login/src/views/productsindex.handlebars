@@ -9,6 +9,7 @@
 
 <body>
     <h1>Products!</h1>
+    <p>{{ message }}, {{ userEmail }} ({{ userRole }})</p> <a href="/api/auth/logout">Logout</a></p>
     {{#if product}}
     <div class="product">
         <h2>{{product.title}}</h2>

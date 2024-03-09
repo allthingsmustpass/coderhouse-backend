@@ -10,14 +10,18 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await userModel.findOne({ email, password });
-
+    const isAdmin = email == "admin@gmail.com" && password == "admin123";
     if (user) {
         req.session.user = user;
-        res.redirect("/products");
+        res.redirect("/api/products");
+    } else if (isAdmin) {
+        req.session.user = { email: email, role: "admin" };
+        res.redirect("/api/products");
     } else {
         res.render("login", { error: "Invalid email or password" });
     }
 });
+
 
 router.get("/register", (req, res) => {
     res.render("register");
@@ -27,7 +31,7 @@ router.post("/register", async (req, res) => {
     const { email, password } = req.body;
     const newUser = new userModel({ email, password });
     await newUser.save();
-    res.redirect("/auth/login");
+    res.redirect("/api/auth/login");
 });
 
 router.get("/logout", (req, res) => {
@@ -36,7 +40,7 @@ router.get("/logout", (req, res) => {
             console.error(err);
             res.redirect("/");
         } else {
-            res.redirect("/auth/login");
+            res.redirect("/api/auth/login");
         }
     });
 });

@@ -40,7 +40,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(`/${API_PREFIX}/products`, productsRoutes)
 app.use(`/${API_PREFIX}/carts`, cartRoutes)
 app.use(`/${API_PREFIX}/auth`, authRoutes)
-
+app.get('/', (req, res) => {
+  res.redirect(`/${API_PREFIX}/auth/login`)
+})
 
 /* Mongo */
 mongoDBconnection()

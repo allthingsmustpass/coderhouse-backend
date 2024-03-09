@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     const { limit, page, sort, query } = req.query;
     const productsData = await pm.getProducts({ limit, page, sort, query });
-    
+
     const cleanProducts = productsData.products.map(product => {
       return {
         title: product.title,
@@ -23,6 +23,9 @@ router.get("/", async (req, res) => {
 
     res.render("productsindex", {
       status: "success",
+      message: "Bienvenido",
+      userEmail: req.session.user.email,
+      userRole: req.session.user.role,
       products: cleanProducts,
       totalPages: productsData.totalPages,
       prevPage: productsData.prevPage,
