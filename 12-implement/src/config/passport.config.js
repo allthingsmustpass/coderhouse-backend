@@ -1,4 +1,3 @@
-/*
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GitHubStrategy = require("passport-github").Strategy;
@@ -66,4 +65,3 @@ passport.deserializeUser(async (id, done) => {
         done(error);
     }
 });
-*/
