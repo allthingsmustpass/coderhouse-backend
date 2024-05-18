@@ -11,3 +11,4 @@ export const ProductsServices = ProductsRepository;
 export const MessagesServices = MessagesRepository;
 export const TicketsServices = TicketsRepository;
 export const MockingProductsServices = MockingProductsRepository;
+export const RestoreRepository = RestoreRepository;

@@ -15,6 +15,7 @@ import loggerRouter from "./src/controller/logger.routes.js";
 import messages from "./src/controller/messages-routes.js";
 import products from "./src/controller/products-routes.js";
 import routerSessions from "./src/controller/sessions-routes.js";
+import passwordReset from "./src/controller/passwordReset-routes.js";
 import MessagesDao from "./src/dao/messagesDao.js";
 import ProductsDao from "./src/dao/productDao.js";
 import views from "./src/routes/views-routes.js";
@@ -89,6 +90,7 @@ app.use("/api", cart);
 app.use("/api", messages);
 app.use("/api", routerSessions);
 app.use("/api", loggerRouter);
+app.use("/api", passwordReset);
 app.use("/", views);
 
 // Configuración de templates de vistas

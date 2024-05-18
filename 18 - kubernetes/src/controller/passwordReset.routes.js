@@ -29,7 +29,7 @@ router.post('/password-reset', async (req, res) => {
     const hash = uuidv4();
     await RestoreDao.createNewRestore(user._id, hash);
 
-    const resetLink = `http://localhost:3000/reset-password/${hash}`;
+    const resetLink = `http://localhost:8080/reset-password/${hash}`;
 
     const mailOptions = {
       from: 'your-email@gmail.com',
