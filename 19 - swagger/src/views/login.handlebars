@@ -1,0 +1,27 @@
+<div class="bg-gray-200 min-h-screen flex justify-center items-center">
+    <div class="bg-white p-8 rounded shadow-md w-80">
+        <h2 class="text-2xl font-semibold mb-4">Inicio de Sesión</h2>
+        <form action="api/sessions/login" method="POST">
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">Email:</label>
+                <input type="email" id="email" name="email" required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 py-2 px-3">
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700">Contraseña:</label>
+                <input type="password" id="password" name="password" required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 py-2 px-3">
+            </div>
+            <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Iniciar
+                Sesión</button>
+        </form>
+        <p class="mt-4 text-sm text-gray-600">¿No tienes una cuenta? <a href="/register"
+                class="text-indigo-500 hover:text-indigo-600">Regístrate aquí</a></p>
+        <p class="mt-4 text-sm text-gray-600">¿Olvidaste tu contraseña? <a href="/restore"
+                class="text-indigo-500 hover:text-indigo-600">Recuperar contraseña</a></p>
+    <div class="text-center mt-10 px-3 py-2 bg-purple-300 rounded-2xl hover:bg-purple-500 hover:text-white">
+        <a href="http://localhost:8080/api/sessions/github" class="text-white-500 hover:text-indigo-600">Ingresa con tu
+            GitHub</a>
+    </div>
+    </div>
+</div>
