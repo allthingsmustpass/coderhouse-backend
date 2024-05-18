@@ -1,0 +1,28 @@
+<div>
+    <h1 class="text-center my-10 font-bold text-3xl">¡Dejanos un mensaje!</h1>
+
+    <!-- Aquí se mostrarán los mensajes recibidos -->
+<ul id="recivedMessages"></ul>
+    <div class="mx-auto w-1/2 fixed bottom-10 left-0 right-0 z-10">
+        <div>
+            <div class="w-full bg-white p-6 rounded-md shadow-md">
+                <form id="dataForm" class="flex-columns justify-center items-center">
+                    <div >
+                        <input type="email" id="email" required name="email" placeholder="Email" class="mt-1 p-2 w-full border rounded-md">
+                    </div>
+                    <div >
+                        <input type="text" id="messageBox" placeholder="Mensaje" required="Mensaje" name="messageBox" class="mt-1 p-2 w-full border rounded-md ">
+                    </div>
+                    <div class="flex justify-end mt-5">
+                        <button type="button" onclick="sendNewMessage()"
+                            class="px-4 py-2 bg-blue-500 text-white rounded-md">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
