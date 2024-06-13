@@ -1,0 +1,42 @@
+<div class="bg-gray-200 h-screen flex justify-center items-center">
+    <div class="bg-gray-100 p-8 rounded shadow-md w-80">
+        <h2 class="text-2xl font-semibold mb-4">Restaurar contraseña</h2>
+        <form action="api/sessions/restore" method="POST">
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">Introduce tu Email:</label>
+                <input type="email" id="email" name="email" required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            
+            <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Enviar enlace </button>
+        </form>
+        <p class="mt-4 text-sm text-gray-600">¿No tienes una cuenta? <a href="/register"
+                class="text-indigo-500 hover:text-indigo-600">Regístrate aquí</a></p>
+        <p class="mt-4 text-sm text-gray-600">¿inicia sesión? <a href="/login"
+                class="text-indigo-500 hover:text-indigo-600">Login</a></p>
+    </div>
+</div>
+
+
+{{!-- <div class="bg-gray-200 h-screen flex justify-center items-center">
+    <div class="bg-gray-100 p-8 rounded shadow-md w-80">
+        <h2 class="text-2xl font-semibold mb-4">Restaurar contraseña</h2>
+        <form action="api/sessions/restore" method="POST">
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">Email:</label>
+                <input type="email" id="email" name="email" required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700">Contraseña:</label>
+                <input type="password" id="password" name="password" required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Cambiar contraseña</button>
+        </form>
+        <p class="mt-4 text-sm text-gray-600">¿No tienes una cuenta? <a href="/register"
+                class="text-indigo-500 hover:text-indigo-600">Regístrate aquí</a></p>
+        <p class="mt-4 text-sm text-gray-600">¿inicia sesión? <a href="/login"
+                class="text-indigo-500 hover:text-indigo-600">Login</a></p>
+    </div>
+</div> --}}
