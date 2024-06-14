@@ -9,7 +9,8 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import passport from "passport";
 import "dotenv/config";
-import __dirname from "./__dirname.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import cart from "./src/controller/cart.routes.js";
 import loggerRouter from "./src/controller/logger.routes.js";
 import messages from "./src/controller/messages.routes.js";
@@ -97,6 +98,7 @@ app.use("/", views);
 
 // Configuración de templates de vistas
 app.engine("handlebars", handlebars.engine());
+const __dirname = dirname(fileURLToPath(import.meta.url));
 app.set("views", __dirname + "/src/views");
 app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));

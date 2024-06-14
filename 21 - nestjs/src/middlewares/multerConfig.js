@@ -1,7 +1,6 @@
 import path from "path";
 import multer from "multer";
 
-// Guardar archivos en diferentes carpetas según el tipo de archivo
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let uploadPath;

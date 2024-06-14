@@ -8,7 +8,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test:carts": "mocha tests/carts.test.js",
-    "test:products": "mocha tests/products.test.js",
+    "test:products": "mocha test/product.test.js",
     "test:sessions": "mocha test/sessions.test.js"
   },
   "keywords": [],
@@ -41,7 +41,7 @@
   "devDependencies": {
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
-    "mocha": "^10.2.0",
+    "mocha": "^10.4.0",
     "nodemon": "^3.0.2",
     "supertest": "^6.3.3"
   }

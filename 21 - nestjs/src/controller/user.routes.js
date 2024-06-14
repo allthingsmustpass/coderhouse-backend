@@ -1,15 +1,14 @@
 import express from 'express';
-import upload from '../middlewares/multerConfig.js'; // Importar la configuración de Multer
+import upload from '../middlewares/multerConfig.js';
 import User from '../model/users.model.js';
+import Product from '../model/products.model.js';
 
 const router = express.Router();
 
 // Ruta para actualizar el rol del usuario a "premium"
-router.put('/api/users/:uid/premium', async (req, res) => {
+router.put('/users/premium/:uid/', async (req, res) => {
   try {
     const userId = req.params.uid;
-
-    // Obtener el usuario de la base de datos
     const user = await User.findById(userId);
 
     if (!user) {
@@ -26,7 +25,7 @@ router.put('/api/users/:uid/premium', async (req, res) => {
       return res.status(400).json({ error: 'El usuario no ha cargado todos los documentos requeridos' });
     }
 
-    // Actualizar el rol del usuario a "premium"
+    // Actualizar el rol del usuario a "premium" :B
     user.role = 'premium';
     await user.save();
 
@@ -37,20 +36,17 @@ router.put('/api/users/:uid/premium', async (req, res) => {
   }
 });
 
-// Ruta para subir archivos
-router.post('/api/users/:uid/documents', upload.array('documents'), async (req, res) => {
+// Ruta para subir la documentación para ser 'premium'
+router.post('/users/:uid/documents', upload.array('documents'), async (req, res) => {
   try {
     const userId = req.params.uid;
     const files = req.files;
-
-    // Obtener el usuario de la base de datos
     const user = await User.findById(userId);
 
     if (!user) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    // Actualizar los documentos del usuario
     const documents = files.map(file => ({
       name: file.originalname,
       reference: file.path
@@ -66,5 +62,49 @@ router.post('/api/users/:uid/documents', upload.array('documents'), async (req, 
     res.status(500).json({ error: 'Error al cargar los documentos' });
   }
 });
+
+router.post('/users/:uid/profile-image', upload.single('profileImage'), async (req, res) => {
+  try {
+    const userId = req.params.uid;
+    const file = req.file;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    user.profileImage = file.path;
+    await user.save();
+
+    res.status(200).json({ message: 'Imagen de perfil cargada exitosamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al cargar la imagen de perfil' });
+  }
+});
+
+// Subir imagen del producto 
+// Sube correctamente la imagen a uploads/products
+//TO DO: Subir una imagen del producto DESDE los productos del usuario y modificar para que exista en el array de imagenes del producto en la vista.
+router.post('/products/:pid/image', upload.single('productImage'), async (req, res) => {
+  try {
+    const productId = req.params.pid;
+    const file = req.file;
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
+    // Actualizar la imagen del producto
+    product.image = file.path;
+    await product.save();
+
+    res.status(200).json({ message: 'Imagen de producto cargada exitosamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al cargar la imagen del producto' });
+  }
+});
+
 
 export default router;

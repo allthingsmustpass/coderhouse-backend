@@ -8,7 +8,7 @@ const usersSchema = mongoose.Schema({
   password: { type: String, required: true },
   role: {
     type: String,
-    enum: ["ADMIN", "USER", "PREMIUM  "],
+    enum: ["ADMIN", "USER", "premium"], //Arreglar el enum.
     default: "USER",
   },
   documents: [
@@ -17,6 +17,7 @@ const usersSchema = mongoose.Schema({
       reference: { type: String, required: true },
     },
   ],
+  profileImage: { type: String },
   last_connection: { type: Date, default: Date.now }
 });
 const usersModel = mongoose.model("users", usersSchema);
